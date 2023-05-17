@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\PersonController;
+use App\Http\Controllers\MainController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layout/app');
-});
+Auth::routes();
 
-Route::get('/{page}', [PersonController::class, 'index'])->where('page', '.*');
+Route::get('{page}', [MainController::class, '__invoke'])->where('page', '.*');
